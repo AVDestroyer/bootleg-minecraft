@@ -58,53 +58,59 @@ public class Board {
     }
 
     public void generateStronghold(CustomRandom r) {
-        boolean[] filledEyes = new boolean[12];
-        int strongholdLocationX = Math.floorMod((int)r.nextLong(), sizeX-4);
-        int strongholdLocationY = Math.floorMod((int)r.nextLong(), sizeY-4);
+        boolean[] filledEyes = new boolean[16];
+        int strongholdLocationX = Math.floorMod((int)r.nextLong(), sizeX-5);
+        int strongholdLocationY = Math.floorMod((int)r.nextLong(), sizeY-5);
         boolean allFilled = true;
-        for (int i = 0; i<12; i++) {
-            long n = r.nextLong();
-            if (n > (9 * (1L << 50)/10L)) {
+        int filledEye = Math.floorMod((int)r.nextLong(), 16);
+        for (int i = 0; i<16; i++) {
+            if (i == filledEye) {
                 filledEyes[i] = true;
             }
             else {
-                filledEyes[i] = false;
-                allFilled = false;
+                long n = r.nextLong();
+                if (n > (9 * (1L << 50)/10L)) {
+                    filledEyes[i] = true;
+                }
+                else {
+                    filledEyes[i] = false;
+                    allFilled = false;
+                }
             }
         }
         int n = 0;
         //OPTIMIZE???
-        for (int i = 0; i< 3; i++) {
+        for (int i = 0; i< 4; i++) {
             Tile endPortal = new Tile("end_portal_frame",filledEyes[n]);
             setTile(strongholdLocationX+1+i,strongholdLocationY,endPortal);
             n++;
         }
-        for (int i = 0; i< 3; i++) {
+        for (int i = 0; i< 4; i++) {
             Tile endPortal = new Tile("end_portal_frame",filledEyes[n]);
             setTile(strongholdLocationX,strongholdLocationY+1+i,endPortal);
             n++;
         }
-        for (int i = 0; i< 3; i++) {
+        for (int i = 0; i< 4; i++) {
             Tile endPortal = new Tile("end_portal_frame",filledEyes[n]);
-            setTile(strongholdLocationX+1+i,strongholdLocationY+4,endPortal);
+            setTile(strongholdLocationX+1+i,strongholdLocationY+5,endPortal);
             n++;
         }
-        for (int i = 0; i< 3; i++) {
+        for (int i = 0; i< 4; i++) {
             Tile endPortal = new Tile("end_portal_frame",filledEyes[n]);
-            setTile(strongholdLocationX+4,strongholdLocationY+1+i,endPortal);
+            setTile(strongholdLocationX+5,strongholdLocationY+1+i,endPortal);
             n++;
         }
 
         if (allFilled) {
-            for (int i = 0; i<3; i++) {
-                for (int j = 0; j<3; j++) {
+            for (int i = 0; i<4; i++) {
+                for (int j = 0; j<4; j++) {
                     setTile(strongholdLocationX+1+i,strongholdLocationY+1+j,new Tile("end_portal"));
                 }
             }
         }
         else {
-            for (int i = 0; i<3; i++) {
-                for (int j = 0; j<3; j++) {
+            for (int i = 0; i<4; i++) {
+                for (int j = 0; j<4; j++) {
                     setTile(strongholdLocationX+1+i,strongholdLocationY+1+j,new Tile("lava"));
                 }
             }

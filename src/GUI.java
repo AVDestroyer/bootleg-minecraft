@@ -164,7 +164,7 @@ public class GUI implements KeyListener {
     private void win() {
         frame.getContentPane().removeAll();
         frame.setLayout(new BorderLayout());
-        JTextArea ta = new JTextArea("Congrats on beating the game (for now)! We may or may not implement a dragon fight in the future... \n\nFor now, submit your seed to ... to receive your flag!");
+        JTextArea ta = new JTextArea("Congrats on beating the game (for now)! We may or may not implement a dragon fight in the future... \n\nFor now, submit your seed to the netcat connection in the challenge to receive your flag!");
         ta.setFont(new Font("Arial", Font.BOLD, 40));
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
