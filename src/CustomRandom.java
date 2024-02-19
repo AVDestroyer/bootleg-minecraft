@@ -1,8 +1,7 @@
 import java.time.Instant;
 public class CustomRandom {
     private long seed;
-    //private final long i = 3997874766610925047L;
-    private final long i = 267562135093417L;
+    private final long i = 3473400794307473L;
 
     public CustomRandom() {
         this.seed = Instant.now().getEpochSecond() ^ i;
@@ -13,11 +12,9 @@ public class CustomRandom {
     }
 
     public long nextLong() {
-        long m = 1L << 50;
-        //long c = 3568652466021992711L;
-        long c = 250827676691827L;
-        //long a = 6781276919310075373L;
-        long a = 276611391853513L;
+        long m = 1L << 52;
+        long c = 4164880461924199L;
+        long a = 2760624790958533L;
         seed = (a *seed+ c) & (m -1L);
         return seed;
     }

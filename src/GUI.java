@@ -21,7 +21,7 @@ public class GUI implements KeyListener {
     private JFrame frame;
 
     public void run() {
-        frame = new JFrame("Minecraft 2D");
+        frame = new JFrame("My new game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 100);
 
@@ -61,7 +61,7 @@ public class GUI implements KeyListener {
 
     }
 
-    private void setGame(Game g) { //make private eventually
+    private void setGame(Game g) { 
         game = g;
     }
 
@@ -83,11 +83,11 @@ public class GUI implements KeyListener {
         int h = (int)size.getHeight();
         int w = (int)size.getWidth();
         int s = 9*(Math.min(h, w))/10;
-        frame.setSize(s,s); //relative size?
+        frame.setSize(s,s);
         frame.getContentPane().removeAll();
 
 
-        GridLayout blocks = new GridLayout(b.getSizeX(),b.getSizeY()); //DO NOT HARDCODE
+        GridLayout blocks = new GridLayout(b.getSizeX(),b.getSizeY());
         frame.setLayout(blocks);
 
         update();

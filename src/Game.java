@@ -1,6 +1,5 @@
 public class Game {
 
-    // choose values for sizex and sizey
     CustomRandom r = new CustomRandom();
     private final int sizeX = 50;
     private final int sizeY = 50;
@@ -23,7 +22,6 @@ public class Game {
                 board.setTile(i,j,new Tile("grass"));
             }
         }
-        // change how many circles generated
         for (int i = 0; i<5; i++) {
             board.generateCircle(r,new Tile("stone"));
         }

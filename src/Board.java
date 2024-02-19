@@ -62,24 +62,17 @@ public class Board {
         int strongholdLocationX = Math.floorMod((int)r.nextLong(), sizeX-5);
         int strongholdLocationY = Math.floorMod((int)r.nextLong(), sizeY-5);
         boolean allFilled = true;
-        int filledEye = Math.floorMod((int)r.nextLong(), 16);
         for (int i = 0; i<16; i++) {
-            if (i == filledEye) {
+            long n = r.nextLong();
+            if (n > (9 * (1L << 52)/10L)) {
                 filledEyes[i] = true;
             }
             else {
-                long n = r.nextLong();
-                if (n > (9 * (1L << 50)/10L)) {
-                    filledEyes[i] = true;
-                }
-                else {
-                    filledEyes[i] = false;
-                    allFilled = false;
-                }
+                filledEyes[i] = false;
+                allFilled = false;
             }
         }
         int n = 0;
-        //OPTIMIZE???
         for (int i = 0; i< 4; i++) {
             Tile endPortal = new Tile("end_portal_frame",filledEyes[n]);
             setTile(strongholdLocationX+1+i,strongholdLocationY,endPortal);
